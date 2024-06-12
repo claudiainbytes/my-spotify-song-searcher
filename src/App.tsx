@@ -1,8 +1,13 @@
-import './App.css'
+import Searcher from './components/Searcher'
+import Results from './components/Results'
+import Detail from './components/Detail'
 
-function App() {
+const App = () => {
   return (
     <>
+      <Searcher/>
+      <Results/>
+      <Detail/>
     </>
   )
 }
