@@ -1,3 +1,3 @@
 GET  https://api.spotify.com/v1/playlists/5iwkYfnHAGMEFLiHFFGnP4 HTTP/1.1
 content-type: application/json 
-Authorization: Bearer BQDooD7JjPFGV6sfLBkuhLDRLnlHpMQje1nBNKbh90w3OdEYfcmi7KkX7gErV0f6b6QVZlS_yQqDV2OCVabFebF0v782LmgDc9LAPTmouLAT_t--6Qs
+Authorization: Bearer BQCNHhMyH1q2GVfGgcNQi2oOcA02aaksM-McApsQd6tV6aWnZwnv0b2izOqAofTp4ZXfu9UdebEMsbyXZJnQ8LCIGdWKnOGh3gmpF7XraGvzo3nrpj4

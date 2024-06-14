@@ -3,7 +3,17 @@ const Searcher = () => {
     <>
         <div className="row">
             <div className="col-12">
-            <h1>Spotify Song Searcher</h1>
+                <iframe
+                    style={{ borderRadius: 12 }}
+                    src="https://open.spotify.com/embed/track/62fqMvguJbsSs9HKhhRfuS?utm_source=generator&theme=0"
+                    width="100%"
+                    height={152}
+                    frameBorder={0}
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                />
+                <h1 className="my-3">Spotify Song Searcher</h1>
                 <form>
                     <fieldset>
                         <div>

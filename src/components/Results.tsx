@@ -1,4 +1,15 @@
-const Results = () => { 
+interface ResultsProps {
+    tracks: []
+}
+
+const Results = ({ tracks }: { tracks: [] }): JSX.Element => {
+
+  const convertMsToMinutesAndSeconds = ms => {
+        const minutes = Math.floor(ms / 60000);
+        const seconds = Math.floor((ms % 60000) / 1000);
+        return `${minutes}:${seconds}`;
+  };
+  
   return(
     <>
         <div className="row">
@@ -10,31 +21,23 @@ const Results = () => {
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">Column heading</th>
-                        <th scope="col">Column heading</th>
+                        <th scope="col">Song</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Duration</th>
                         <th scope="col">Column heading</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="table-active">
-                        <th scope="row">Active</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">Default</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr className="table-dark">
-                        <th scope="row">Dark</th>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
+                        { tracks.map( item => 
+                            <tr key={item.id}>
+                                <th scope="row">
+                                    {item.song} - {item.artist}
+                                </th>
+                                <th>{item.album}</th>
+                                <th>{convertMsToMinutesAndSeconds(item.duration_ms)}</th>
+                                <th><img src={item.img} className="rounded float-start" alt={item.song}/></th>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
                 <div className="d-flex justify-content-center my-4">
