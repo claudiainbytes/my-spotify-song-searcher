@@ -3,7 +3,7 @@ import playlistService from './services/playlists'
 import loginService from './services/login'
 import Searcher from './components/Searcher'
 import Results from './components/Results'
-import Detail from './components/Detail'
+import Player from './components/Player'
 
 interface Track {
   id: number,
@@ -56,11 +56,12 @@ const App = () => {
 
   return (
     <>
+      <Player trackId="62fqMvguJbsSs9HKhhRfuS"/>
       <Searcher/>
       <Results tracks={tracks}/>
-      <Detail/>
     </>
   )
 }
 
 export default App
+//62fqMvguJbsSs9HKhhRfuS

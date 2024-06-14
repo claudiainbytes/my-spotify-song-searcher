@@ -2,7 +2,7 @@ interface ResultsProps {
     tracks: []
 }
 
-const Results = ({ tracks }: { tracks: [] }): JSX.Element => {
+const Results = ({ tracks }: ResultsProps): JSX.Element => {
 
   const convertMsToMinutesAndSeconds = ms => {
         const minutes = Math.floor(ms / 60000);
