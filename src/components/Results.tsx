@@ -18,28 +18,47 @@ const Results = ({ tracks }: ResultsProps): JSX.Element => {
                 <h4>Results</h4>
             </div>
             <div className="col-12">
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">Song</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Column heading</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { tracks.map( item => 
-                            <tr key={item.id}>
-                                <th scope="row">
-                                    {item.song} - {item.artist}
-                                </th>
-                                <th>{item.album}</th>
-                                <th>{convertMsToMinutesAndSeconds(item.duration_ms)}</th>
-                                <th><img src={item.img} className="rounded float-start" alt={item.song}/></th>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                <div className="row mt-3 mb-2">
+                    <div className="col-12 col-lg-4">
+                        <h5>Song</h5>
+                    </div>
+                    <div className="col-12 col-lg-5 d-none d-lg-block">
+                        <h5>Album</h5>
+                    </div>
+                    <div className="col-12 col-lg-2  d-none d-lg-block">
+                        <h5>Duration</h5>
+                    </div>
+                    <div className="col-12 col-lg-1  d-none d-lg-block">
+                        <h5>Action</h5>
+                    </div>
+                </div>
+                { tracks.map( item => 
+                <div className="row" key={item.id}>
+                    <div className="col-12 col-lg-4">
+                        <div className="song-card py-2">
+                            <div className="song-card_left">
+                                <img src={item.img} className="rounded float-start" alt={item.song}/>
+                            </div>
+                            <div className="song-card_right">
+                                <h6>{item.song}</h6>
+                                <p><small>{item.artist}</small></p>
+                                <a href="#"><h6 className="d-block d-lg-none"><span class="badge bg-success">Play</span></h6></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-lg-5 d-none d-lg-flex flex-column align-items-start justify-content-center">
+                        <h6>{item.album}</h6>
+                    </div>
+                    <div className="col-12 col-lg-2 d-none d-lg-flex flex-column align-items-start justify-content-center">
+                        <h6>{convertMsToMinutesAndSeconds(item.duration_ms)}</h6>
+                    </div>
+                    <div className="col-12 col-lg-1 d-none d-lg-block d-lg-flex flex-column align-items-center justify-content-center">
+                        <button type="button" class="btn btn-success btn-sm">Play</button>
+                    </div>
+                </div>
+                )}
+            </div>     
+            <div className="col-12">
                 <div className="d-flex justify-content-center my-4">
                     <ul className="pagination pagination-md">
                         <li className="page-item disabled">
@@ -65,7 +84,7 @@ const Results = ({ tracks }: ResultsProps): JSX.Element => {
                         </li>
                     </ul>
                 </div>
-            </div>      
+            </div> 
         </div>
     </>
   )  
