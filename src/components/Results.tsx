@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import PaginationComponent from './PaginationComponent'
 import PlayLink from './PlayLink'
 interface ResultsProps {
     tracks: [];
@@ -6,10 +8,23 @@ interface ResultsProps {
 
 const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; 
+
   const convertMsToMinutesAndSeconds = ms => {
         const minutes = Math.floor(ms / 60000);
         const seconds = Math.floor((ms % 60000) / 1000);
         return `${minutes}:${seconds}`;
+  };
+
+  const totalItems = tracks.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = tracks.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
   
   return(
@@ -34,7 +49,7 @@ const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
                         <h5>Action</h5>
                     </div>
                 </div>
-                { tracks.map( item => 
+                { currentItems.map( item => 
                 <div className="row" key={item.id}>
                     <div className="col-12 col-lg-4">
                         <div className="song-card py-2">
@@ -66,29 +81,11 @@ const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
             </div>     
             <div className="col-12">
                 <div className="d-flex justify-content-center my-4">
-                    <ul className="pagination pagination-md">
-                        <li className="page-item disabled">
-                            <a className="page-link" href="#">&laquo;</a>
-                        </li>
-                        <li className="page-item active">
-                            <a className="page-link" href="#">1</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">2</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">3</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">4</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">5</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">&raquo;</a>
-                        </li>
-                    </ul>
+                    <PaginationComponent
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
                 </div>
             </div> 
         </div>

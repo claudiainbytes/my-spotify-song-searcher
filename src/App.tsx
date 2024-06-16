@@ -43,7 +43,7 @@ const App = () => {
             setToken(response.access_token)
         })
     } else {
-      window.localStorage.setItem('loggedInSpotifyApp', JSON.stringify(token))
+      //window.localStorage.setItem('loggedInSpotifyApp', JSON.stringify(token))
       playlistService.setToken(token)
       if(tracks.length === 0){
         playlistService
