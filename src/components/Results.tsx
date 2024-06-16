@@ -60,7 +60,7 @@ const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
                                 <h6>{item.song}</h6>
                                 <p><small>{item.artist}</small></p>
                                 <PlayLink trackId={item.id} handleClick={handleClick}>
-                                    <h6 className="d-block d-lg-none"><span className="badge bg-success">Play</span></h6>
+                                    <h6 className="d-block d-lg-none"><span className="badge bg-success">Discover</span></h6>
                                 </PlayLink>
                             </div>
                         </div>
@@ -73,14 +73,14 @@ const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
                     </div>
                     <div className="col-12 col-lg-1 d-none d-lg-block d-lg-flex flex-column align-items-center justify-content-center">
                         <PlayLink trackId={item.id} handleClick={handleClick}>
-                            <h5 className="d-none d-lg-block"><span className="badge bg-success p-2">Play</span></h5>
+                            <h5 className="d-none d-lg-block"><span className="badge bg-success p-2">Discover</span></h5>
                         </PlayLink>
                     </div>
                 </div>
                 )}
             </div>     
             <div className="col-12">
-                <div className="d-flex justify-content-center my-4">
+                <div className="d-flex justify-content-center mt-4 mb-0">
                     <PaginationComponent
                         currentPage={currentPage}
                         totalPages={totalPages}

@@ -4,6 +4,7 @@ import loginService from './services/login'
 import Searcher from './components/Searcher'
 import Results from './components/Results'
 import Player from './components/Player'
+import Footer from './components/Footer'
 
 interface Track {
   id: string;
@@ -74,16 +75,22 @@ const App = () => {
   }
 
   const filteredTracks = (filterByTerm.trim().length === 0 || filterByTerm.trim() === '') ? tracks : tracks.filter((track) => track.song.toLowerCase().includes(filterByTerm) )
-
-  return (
-    <>
-    { track !== null && (
-      <Player trackId={track.id}/>
-    )}
-      <Searcher handleChange={handleChange} handleReset={handleReset}/>
-      <Results tracks={filteredTracks} handleClick={handleClick} />
-    </>
-  )
+  
+  if(tracks.length === 0 ){
+    return(<h6>Loading...</h6>)
+  }
+  else {
+    return (
+      <>
+      { track !== null && (
+        <Player trackId={track.id}/>
+      )}
+        <Searcher handleChange={handleChange} handleReset={handleReset}/>
+        <Results tracks={filteredTracks} handleClick={handleClick} />
+        <Footer />
+      </>
+    )
+  }
 }
 
 export default App
