@@ -34,6 +34,7 @@ const App = () => {
   const [tracks, setTracks] = useState<Track[]>([])
   const [token, setToken] = useState('')
   const [track, setTrack] = useState(null)
+  const [filterByTerm, setFilterByTerm] = useState('')
   
   useEffect(() => {
     if( token === '' ){
@@ -60,15 +61,27 @@ const App = () => {
     e.preventDefault()
     const track = tracks.find(item => item.id === trackId)
     setTrack(track)
-  };
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const term = e.target.value
+    setFilterByTerm(term.toLowerCase())
+  }
+
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+    document.getElementById('searchByTerm').value = ''
+    setFilterByTerm('')
+  }
+
+  const filteredTracks = (filterByTerm.trim().length === 0 || filterByTerm.trim() === '') ? tracks : tracks.filter((track) => track.song.toLowerCase().includes(filterByTerm) )
 
   return (
     <>
     { track !== null && (
       <Player trackId={track.id}/>
     )}
-      <Searcher/>
-      <Results tracks={tracks} handleClick={handleClick}/>
+      <Searcher handleChange={handleChange} handleReset={handleReset}/>
+      <Results tracks={filteredTracks} handleClick={handleClick} />
     </>
   )
 }

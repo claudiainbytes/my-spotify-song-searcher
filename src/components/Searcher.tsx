@@ -1,4 +1,9 @@
-const Searcher = () => { 
+interface SearcherProps {
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleReset: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const Searcher = ({ handleChange, handleReset } : SearcherProps ): JSX.Element => { 
   return(
     <>
         <div className="row">
@@ -13,8 +18,10 @@ const Searcher = () => {
                                     className="form-control" 
                                     id="searchByTerm" 
                                     aria-describedby="searchByTermHelp" 
-                                    placeholder=""/>
-                                <button className="btn btn-primary" type="submit" id="submit">Submit</button>
+                                    placeholder=""
+                                    onChange={handleChange}
+                                    />
+                                <button className="btn btn-primary" type="button" id="reset" onClick={handleReset}>Reset</button>
                             </div>
                             <small id="searchByTermHelp" 
                                    className="form-text text-muted">
