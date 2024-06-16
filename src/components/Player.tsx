@@ -1,9 +1,11 @@
 interface TrackProps {
-    trackId: string
+    trackId: string;
 }
 
 const Player = ({ trackId } : TrackProps ): JSX.Element => { 
+
     const trackSrc = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`
+
     return(
         <>
             <iframe

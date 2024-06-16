@@ -1,8 +1,10 @@
+import PlayLink from './PlayLink'
 interface ResultsProps {
-    tracks: []
+    tracks: [];
+    handleClick: () => void
 }
 
-const Results = ({ tracks }: ResultsProps): JSX.Element => {
+const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
 
   const convertMsToMinutesAndSeconds = ms => {
         const minutes = Math.floor(ms / 60000);
@@ -42,7 +44,9 @@ const Results = ({ tracks }: ResultsProps): JSX.Element => {
                             <div className="song-card_right">
                                 <h6>{item.song}</h6>
                                 <p><small>{item.artist}</small></p>
-                                <a href="#"><h6 className="d-block d-lg-none"><span class="badge bg-success">Play</span></h6></a>
+                                <PlayLink trackId={item.id} handleClick={handleClick}>
+                                    <h6 className="d-block d-lg-none"><span className="badge bg-success">Play</span></h6>
+                                </PlayLink>
                             </div>
                         </div>
                     </div>
@@ -53,7 +57,9 @@ const Results = ({ tracks }: ResultsProps): JSX.Element => {
                         <h6>{convertMsToMinutesAndSeconds(item.duration_ms)}</h6>
                     </div>
                     <div className="col-12 col-lg-1 d-none d-lg-block d-lg-flex flex-column align-items-center justify-content-center">
-                        <button type="button" class="btn btn-success btn-sm">Play</button>
+                        <PlayLink trackId={item.id} handleClick={handleClick}>
+                            <h5 className="d-none d-lg-block"><span className="badge bg-success p-2">Play</span></h5>
+                        </PlayLink>
                     </div>
                 </div>
                 )}
