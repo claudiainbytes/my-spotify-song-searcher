@@ -16,7 +16,8 @@ interface Track {
   popularity: string;
   external_url: string;
   preview_url: string;
-  duration_ms: string
+  duration_ms: string;
+  uri: string;
 }
 interface Credential {
   grant_type: string;
@@ -45,14 +46,13 @@ const App = () => {
             setToken(response.access_token)
         })
     } else {
-      //window.localStorage.setItem('loggedInSpotifyApp', JSON.stringify(token))
       playlistService.setToken(token)
       if(tracks.length === 0){
         playlistService
           .getAll()
           .then(tracks => {
             setTracks(tracks)
-            setTrack(tracks[0])
+            setTrack(tracks[Math.floor(Math.random() * tracks.length)])
           })
       }
     }

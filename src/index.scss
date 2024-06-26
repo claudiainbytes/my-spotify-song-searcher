@@ -41,3 +41,27 @@ hr {
 .pagination {
     flex-wrap: wrap;
 }
+
+.spotify-embed-iframe {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 15px;
+    #playTrackButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    #embed-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+}

@@ -5,16 +5,17 @@ const baseUrl: string = 'https://api.spotify.com/v1/playlists/5iwkYfnHAGMEFLiHFF
 let token: string = '';
 
 interface Track {
-    id: number,
-    song: string,
-    href: string,
-    artist: string,
-    album: string,
-    img: string,
-    popularity: string,
-    external_url: string,
-    preview_url: string,
-    duration_ms: string
+    id: string;
+    song: string;
+    href: string;
+    artist: string;
+    album: string;
+    img: string;
+    popularity: string;
+    external_url: string;
+    preview_url: string;
+    duration_ms: string;
+    uri: string;
   }
 
 const setToken = (newToken: string): void => {
@@ -37,7 +38,8 @@ const getAll = async () => {
                 popularity: item.track.popularity,
                 external_url: item.track.external_urls.spotify,
                 preview_url: item.track.preview_url,
-                duration_ms: item.track.duration_ms
+                duration_ms: item.track.duration_ms,
+                uri: item.track.uri
         }))
         return tracks;
     } catch (error) {
