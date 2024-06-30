@@ -28,7 +28,7 @@ const getAll = async () => {
     }
     try {
         const response = await axios.get<any>(baseUrl, config);
-        const tracks: Track[] = response.data.tracks.items.map( item => ({
+        const tracks: Track[] = response.data.tracks.items.map((item: any) => ({
                 id: item.track.id,
                 song: item.track.name,
                 href: item.track.href,

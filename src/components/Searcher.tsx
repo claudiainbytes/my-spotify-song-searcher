@@ -1,6 +1,7 @@
+import React from 'react'
 interface SearcherProps {
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    handleReset: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    handleReset: () => void;
 }
 
 const Searcher = ({ handleChange, handleReset } : SearcherProps ): JSX.Element => { 

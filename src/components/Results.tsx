@@ -2,28 +2,28 @@ import { useState } from 'react'
 import PaginationComponent from './PaginationComponent'
 import PlayLink from './PlayLink'
 interface ResultsProps {
-    tracks: [];
-    handleClick: () => void
+    filteredTracks: [];
+    handleClick: any;
 }
 
-const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
+const Results = ({ filteredTracks, handleClick }: ResultsProps): JSX.Element => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; 
 
-  const convertMsToMinutesAndSeconds = ms => {
+  const convertMsToMinutesAndSeconds = (ms: any) => {
         const minutes = Math.floor(ms / 60000);
         const seconds = Math.floor((ms % 60000) / 1000);
         return `${minutes}:${seconds}`;
   };
 
-  const totalItems = tracks.length;
+  const totalItems = filteredTracks.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tracks.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredTracks.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: any) => {
     setCurrentPage(page);
   };
   
@@ -49,7 +49,7 @@ const Results = ({ tracks, handleClick }: ResultsProps): JSX.Element => {
                         <h5>Action</h5>
                     </div>
                 </div>
-                { currentItems.map( item => 
+                { currentItems.map((item: any) => 
                 <div className="row" key={item.id}>
                     <div className="col-12 col-lg-4">
                         <div className="song-card py-2">

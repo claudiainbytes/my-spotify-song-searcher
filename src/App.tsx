@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import playlistService from './services/playlists'
 import loginService from './services/login'
 import Searcher from './components/Searcher'
@@ -35,7 +35,7 @@ const App = () => {
 
   const [tracks, setTracks] = useState<Track[]>([])
   const [token, setToken] = useState('')
-  const [track, setTrack] = useState(null)
+  const [track, setTrack] = useState<any>(null)
   const [filterByTerm, setFilterByTerm] = useState('')
   
   useEffect(() => {
@@ -50,7 +50,7 @@ const App = () => {
       if(tracks.length === 0){
         playlistService
           .getAll()
-          .then(tracks => {
+          .then(( tracks: any ) => {
             setTracks(tracks)
             setTrack(tracks[Math.floor(Math.random() * tracks.length)])
           })
@@ -58,9 +58,8 @@ const App = () => {
     }
   }, [token, tracks]) 
 
-  const handleClick = (e: React.MouseEventHandler<HTMLAnchorElement>, trackId: string) => {
-    e.preventDefault()
-    const track = tracks.find(item => item.id === trackId)
+  const handleClick = (trackId: string) => {
+    const track: any = tracks.find(item => item.id === trackId)
     setTrack(track)
   }
 
@@ -69,12 +68,12 @@ const App = () => {
     setFilterByTerm(term.toLowerCase())
   }
 
-  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
-    document.getElementById('searchByTerm').value = ''
+  const handleReset = () => {
+    (document.getElementById('searchByTerm') as HTMLInputElement).value = ''
     setFilterByTerm('')
   }
 
-  const filteredTracks = (filterByTerm.trim().length === 0 || filterByTerm.trim() === '') ? tracks : tracks.filter((track) => track.song.toLowerCase().includes(filterByTerm) )
+  const filteredTracks: any = (filterByTerm.trim().length === 0 || filterByTerm.trim() === '') ? tracks : tracks.filter((track) => track.song.toLowerCase().includes(filterByTerm) )
   
   if(tracks.length === 0 ){
     return(<h6>Loading...</h6>)
@@ -82,11 +81,11 @@ const App = () => {
   else {
     return (
       <>
-      { track !== null && (
-        <Player trackId={track.id}/>
-      )}
+        { track !== null && (
+          <Player trackId={track.id}/>
+        )}
         <Searcher handleChange={handleChange} handleReset={handleReset}/>
-        <Results tracks={filteredTracks} handleClick={handleClick} />
+        <Results filteredTracks={filteredTracks} handleClick={handleClick} />
         <Footer />
       </>
     )

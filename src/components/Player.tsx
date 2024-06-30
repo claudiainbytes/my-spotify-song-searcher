@@ -3,11 +3,15 @@ interface TrackProps {
     trackId: string;
 }
 
+declare const window: {
+    onSpotifyIframeApiReady: any;
+} & Window;
+
 const Player = ({ trackId } : TrackProps ): JSX.Element => { 
  
     useEffect(() => {
         if(trackId){
-            window.onSpotifyIframeApiReady = (IFrameAPI) => {
+            window.onSpotifyIframeApiReady  = (IFrameAPI: any) => {
                 const element = document.getElementById('embed-iframe');
                 const options = {
                     uri: `spotify:track:${trackId}`,
@@ -15,9 +19,9 @@ const Player = ({ trackId } : TrackProps ): JSX.Element => {
                     height: '152',
                 };
                 if(element){
-                    const callback = (EmbedController) => {
-                        document.getElementById('playTrackButton').addEventListener('click', () => {
-                            EmbedController.loadUri(document.getElementById('playTrackButton').dataset.spotifyId)
+                    const callback = (EmbedController: any) => {
+                        document.getElementById('playTrackButton')?.addEventListener('click', () => {
+                            EmbedController.loadUri(document.getElementById('playTrackButton')?.dataset.spotifyId)
                             EmbedController.play()
                         });
                     };

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pagination } from 'react-bootstrap';
 
 interface PaginatorProps {
@@ -8,7 +7,7 @@ interface PaginatorProps {
 }
 
 const PaginationComponent = ({ currentPage, totalPages, onPageChange } : PaginatorProps ): JSX.Element => { 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: Number) => {
     if (page !== currentPage) {
       onPageChange(page);
     }
