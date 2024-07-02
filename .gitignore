@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 /my-spotify-song-searcher/src/requests/*
 .original.env
+.env
